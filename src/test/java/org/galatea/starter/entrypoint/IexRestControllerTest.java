@@ -1,5 +1,6 @@
 package org.galatea.starter.entrypoint;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -97,6 +98,7 @@ public class IexRestControllerTest extends ASpringTest {
         .andExpect(jsonPath("$[0].low").value(new BigDecimal("297.39")))
         .andExpect(jsonPath("$[0].volume", is(14863474)))
         .andExpect(jsonPath("$[0].date", is("2021-04-21")))
+        .andExpect(jsonPath("$", hasSize(3)))
         .andReturn();
   }
 
