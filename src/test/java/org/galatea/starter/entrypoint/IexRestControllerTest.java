@@ -98,6 +98,13 @@ public class IexRestControllerTest extends ASpringTest {
         .andExpect(jsonPath("$[0].low").value(new BigDecimal("297.39")))
         .andExpect(jsonPath("$[0].volume", is(14863474)))
         .andExpect(jsonPath("$[0].date", is("2021-04-21")))
+        .andExpect(jsonPath("$[2].symbol", is("FB")))
+        .andExpect(jsonPath("$[2].open").value(new BigDecimal("298.76")))
+        .andExpect(jsonPath("$[2].close").value(new BigDecimal("301.13")))
+        .andExpect(jsonPath("$[2].high").value(new BigDecimal("302.59")))
+        .andExpect(jsonPath("$[2].low").value(new BigDecimal("297.15")))
+        .andExpect(jsonPath("$[2].volume", is(17559498)))
+        .andExpect(jsonPath("$[2].date", is("2021-04-23")))
         .andExpect(jsonPath("$", hasSize(3)))
         .andReturn();
   }
