@@ -49,7 +49,10 @@ spring:
       # this points at the local WireMock server in the test environment.
       iexBasePath: http://localhost:${wiremock.server.port}/
       iexHistoricalBasePath: http://localhost:${wiremock.server.port}/
+      # Token for testing server error
+      #iexHistoricalToken: xxxx
       iexHistoricalToken: pk_171a3b58264b49daae68899722a1bdcb
+
 ---
 # Dev properties go here
 spring:

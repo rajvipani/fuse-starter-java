@@ -138,4 +138,14 @@ public class IexRestControllerTest extends ASpringTest {
         .andExpect(jsonPath("$", is(Collections.emptyList())))
         .andReturn();
   }
+
+  @Test
+  public void testGetHistoricalPriceServerError() throws Exception {
+    MvcResult result = this.mvc.perform(
+        org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+            .get("/iex/historicalPrice?symbol=ABCD&range=5d") //Add Date to parameters
+            .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isNotFound())
+        .andReturn();
+  }
 }
