@@ -1,5 +1,6 @@
 package org.galatea.starter.service;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import lombok.NonNull;
@@ -19,6 +20,7 @@ public class IexHistoricalPricesService {
 
   @NonNull
   private IexHistoricalPricesClient iexHistoricalPricesClient;
+  private LocalDate startDate, endDate;
   /**
    * Get the Historical Prices of the symbol passed in.
    *
@@ -32,13 +34,32 @@ public class IexHistoricalPricesService {
       final String range) {
 
     if (symbol.isEmpty()) {
+
       return Collections.emptyList();
+
     } else if (StringUtils.isBlank(date) && StringUtils.isNoneBlank(range)) {
+//      startDate = getStartDateFromRange(range);
+      endDate = LocalDate.now();
       return iexHistoricalPricesClient.getHistoricalPricesForRange(symbol, range);
+
     } else if (StringUtils.isBlank(range) && StringUtils.isNoneBlank(date)) {
+
       return iexHistoricalPricesClient.getHistoricalPricesForDate(symbol, date);
+
     } else {
+
       return iexHistoricalPricesClient.getHistoricalPricesForSymbol(symbol);
+
     }
   }
+
+//  public LocalDate getStartDateFromRange(String range) {
+//    LocalDate dateToRetrun;
+////    if (range == "max") {
+//////      dateToRetrun = LocalDate.now().minusYears(15);
+//////    } else if (Character.toLowerCase(range.charAt(1)) == 'y') {
+//////      dateToRetrun = LocalDate.now().minusYears(Character.getNumericValue(range.charAt(0)));
+//////    }
+//    return dateToRetrun;
+//  }
 }

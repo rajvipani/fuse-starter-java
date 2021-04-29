@@ -143,9 +143,9 @@ public class IexRestControllerTest extends ASpringTest {
   public void testGetHistoricalPriceServerError() throws Exception {
     MvcResult result = this.mvc.perform(
         org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-            .get("/iex/historicalPrice?symbol=ABCD&range=5d") //Add Date to parameters
+            .get("/iex/historicalPrice?symbol=AAPL&range=5d") //Add Date to parameters
             .accept(MediaType.APPLICATION_JSON_VALUE))
-        .andExpect(status().isNotFound())
+        .andExpect(status().is(500))
         .andReturn();
   }
 }
