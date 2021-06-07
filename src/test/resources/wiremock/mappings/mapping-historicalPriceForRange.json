@@ -1,0 +1,35 @@
+{
+  "id" : "16369e06-78d4-40a7-98d1-3dbe0ba82fc9",
+  "name" : "historical_price_for_range",
+  "request" : {
+    "url" : "/stock/FB/chart/5d?token=pk_171a3b58264b49daae68899722a1bdcb",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "jsonBody" : [
+      {"close":301.47,"high":301.98,"low":297.39,"open":301.945,"symbol":"FB","volume":14863474,"id":"HISTORICAL_PRICES","key":"FB","subkey":"","date":"2021-04-21","updated":1619052493000,"changeOverTime":0,"marketChangeOverTime":0,"uOpen":301.945,"uClose":301.47,"uHigh":301.98,"uLow":297.39,"uVolume":14863474,"fOpen":301.945,"fClose":301.47,"fHigh":301.98,"fLow":297.39,"fVolume":14863474,"label":"Apr 21, 21","change":0,"changePercent":0},
+      {"close":296.52,"high":302.92,"low":296.04,"open":301.33,"symbol":"FB","volume":16375350,"id":"HISTORICAL_PRICES","key":"FB","subkey":"","date":"2021-04-22","updated":1619139615000,"changeOverTime":-0.01641954423325719,"marketChangeOverTime":-0.01641954423325719,"uOpen":301.33,"uClose":296.52,"uHigh":302.92,"uLow":296.04,"uVolume":16375350,"fOpen":301.33,"fClose":296.52,"fHigh":302.92,"fLow":296.04,"fVolume":16375350,"label":"Apr 22, 21","change":-4.9500000000000455,"changePercent":-0.0164},
+      {"close":301.13,"high":302.59,"low":297.15,"open":298.76,"symbol":"FB","volume":17559498,"id":"HISTORICAL_PRICES","key":"FB","subkey":"","date":"2021-04-23","updated":1619226970000,"changeOverTime":-0.0011278070786480637,"marketChangeOverTime":-0.0011278070786480637,"uOpen":298.76,"uClose":301.13,"uHigh":302.59,"uLow":297.15,"uVolume":17559498,"fOpen":298.76,"fClose":301.13,"fHigh":302.59,"fLow":297.15,"fVolume":17559498,"label":"Apr 23, 21","change":4.610000000000014,"changePercent":0.0155}],
+    "headers" : {
+      "Server" : "nginx",
+      "Date" : "Thu, 08 Aug 2019 14:08:53 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Connection" : "keep-alive",
+      "set-cookie" : "ctoken=958c0e17a3f542a2a13ef676b670326d; Domain=.iextrading.com; Path=/; Expires=Fri, 09 Aug 2019 02:08:53 GMT; Secure",
+      "Content-Security-Policy" : "default-src 'self'; child-src 'none'; object-src 'none'; style-src 'self' 'unsafe-inline'; font-src data:; frame-src 'self'; connect-src 'self' https://auth.iextrading.com https://api.iextrading.com https://api.iextrading.com wss://iextrading.com wss://tops.iextrading.com wss://api.iextrading.com wss://iextrading.com https://iextrading.com/member-center; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com/analytics.js;",
+      "X-Content-Security-Policy" : "default-src 'self'; child-src 'none'; object-src 'none'; style-src 'self' 'unsafe-inline'; font-src data:; frame-src 'self'; connect-src 'self' https://auth.iextrading.com https://api.iextrading.com https://api.iextrading.com wss://iextrading.com wss://tops.iextrading.com wss://api.iextrading.com wss://iextrading.com https://iextrading.com/member-center; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com/analytics.js;",
+      "Frame-Options" : "SAMEORIGIN",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-Content-Type-Options" : "nosniff",
+      "Strict-Transport-Security" : "max-age=15768000",
+      "Access-Control-Allow-Origin" : "*",
+      "Access-Control-Allow-Credentials" : "true",
+      "Access-Control-Allow-Methods" : "GET, OPTIONS",
+      "Access-Control-Allow-Headers" : "Origin, X-Requested-With, Content-Type, Accept"
+    }
+  },
+  "uuid" : "16369e06-78d4-40a7-98d1-3dbe0ba82fc9",
+  "persistent" : true,
+  "insertionIndex" : 5
+}

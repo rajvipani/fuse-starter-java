@@ -6,8 +6,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.aspect4log.Log;
 import net.sf.aspect4log.Log.Level;
+import org.galatea.starter.domain.IEXHistoricalPrices;
 import org.galatea.starter.domain.IexLastTradedPrice;
 import org.galatea.starter.domain.IexSymbol;
+import org.galatea.starter.service.IexHistoricalPricesService;
 import org.galatea.starter.service.IexService;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -25,12 +27,15 @@ public class IexRestController {
   @NonNull
   private IexService iexService;
 
+  @NonNull
+  private IexHistoricalPricesService iexHistoricalPricesService;
   /**
    * Exposes an endpoint to get all of the symbols available on IEX.
    *
    * @return a list of all IexStockSymbols.
    */
-  @GetMapping(value = "${mvc.iex.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
+  @GetMapping(value = "${mvc.iex.getAllSymbolsPath}", produces =
+      {MediaType.APPLICATION_JSON_VALUE})
   public List<IexSymbol> getAllStockSymbols() {
     return iexService.getAllSymbols();
   }
@@ -48,4 +53,20 @@ public class IexRestController {
     return iexService.getLastTradedPriceForSymbols(symbols);
   }
 
+  /**
+   * Get the Historical prices for the symbol and date/range parameters passed.
+   *
+   * @param symbol list of symbols to get last traded price for.
+   * @param date date for which historical price is needed for the symbol
+   * @param range range for which historical price is needed for the symbol
+   * @return a List of historical trading price objects for the given symbol.
+   */
+  @GetMapping(value = "${mvc.iex.getHistoricalPricesPath}", produces = {
+      MediaType.APPLICATION_JSON_VALUE})
+  public List<IEXHistoricalPrices> getHistoricalPrices(
+      @RequestParam(value = "symbol") final String symbol,
+      @RequestParam(value = "date", required = false) final String date,
+      @RequestParam(value = "range", required = false) final String range) {
+    return iexHistoricalPricesService.getHistoricalPrices(symbol, date, range);
+  }
 }

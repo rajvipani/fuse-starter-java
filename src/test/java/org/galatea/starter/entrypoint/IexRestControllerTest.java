@@ -1,5 +1,6 @@
 package org.galatea.starter.entrypoint;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -79,6 +80,72 @@ public class IexRestControllerTest extends ASpringTest {
             .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", is(Collections.emptyList())))
+        .andReturn();
+  }
+
+  @Test
+  public void testGetHistoricalPriceForRange() throws Exception {
+
+    MvcResult result = this.mvc.perform(
+        org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+            .get("/iex/historicalPrices?symbol=FB&range=5d")
+            .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].symbol", is("FB")))
+        .andExpect(jsonPath("$[0].open").value(new BigDecimal("301.945")))
+        .andExpect(jsonPath("$[0].close").value(new BigDecimal("301.47")))
+        .andExpect(jsonPath("$[0].high").value(new BigDecimal("301.98")))
+        .andExpect(jsonPath("$[0].low").value(new BigDecimal("297.39")))
+        .andExpect(jsonPath("$[0].volume", is(14863474)))
+        .andExpect(jsonPath("$[0].date", is("2021-04-21")))
+        .andExpect(jsonPath("$[2].symbol", is("FB")))
+        .andExpect(jsonPath("$[2].open").value(new BigDecimal("298.76")))
+        .andExpect(jsonPath("$[2].close").value(new BigDecimal("301.13")))
+        .andExpect(jsonPath("$[2].high").value(new BigDecimal("302.59")))
+        .andExpect(jsonPath("$[2].low").value(new BigDecimal("297.15")))
+        .andExpect(jsonPath("$[2].volume", is(17559498)))
+        .andExpect(jsonPath("$[2].date", is("2021-04-23")))
+        .andExpect(jsonPath("$", hasSize(3)))
+        .andReturn();
+  }
+
+  @Test
+  public void testGetHistoricalPriceForDate() throws Exception {
+
+    MvcResult result = this.mvc.perform(
+        org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+            .get("/iex/historicalPrices?symbol=FB&date=20200923") //Add Date to parameters
+            .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].symbol", is("FB")))
+        .andExpect(jsonPath("$[0].open").value(new BigDecimal("255.26")))
+        .andExpect(jsonPath("$[0].close").value(new BigDecimal("249.02")))
+        .andExpect(jsonPath("$[0].high").value(new BigDecimal("257.9921")))
+        .andExpect(jsonPath("$[0].low").value(new BigDecimal("248.15")))
+        .andExpect(jsonPath("$[0].volume", is(19641266)))
+        .andExpect(jsonPath("$[0].date", is("2020-09-23")))
+        .andReturn();
+  }
+
+  @Test
+  public void testGetHistoricalPriceEmpty() throws Exception {
+
+    MvcResult result = this.mvc.perform(
+        org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+            .get("/iex/historicalPrices?symbol=")
+            .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", is(Collections.emptyList())))
+        .andReturn();
+  }
+
+  @Test
+  public void testGetHistoricalPriceServerError() throws Exception {
+    MvcResult result = this.mvc.perform(
+        org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+            .get("/iex/historicalPrices?symbol=ABCD&range=5d") //Add Date to parameters
+            .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().is(500))
         .andReturn();
   }
 }
